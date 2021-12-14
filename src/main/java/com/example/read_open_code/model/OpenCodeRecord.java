@@ -49,7 +49,7 @@ public class OpenCodeRecord extends Model {
     /**
      * 开奖时间
      */
-    private LocalTime opoeTime;
+    private LocalTime openTime;
 
     /**
      * 记录创建时间(正常是open_date+open_time)

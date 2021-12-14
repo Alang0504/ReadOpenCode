@@ -2,6 +2,7 @@ package com.example.read_open_code.dao;
 
 import com.example.read_open_code.model.OpenCodeRecord;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author aLang
  * @since 2021-12-13
  */
+@Repository
 public interface OpenCodeRecordMapper extends BaseMapper<OpenCodeRecord> {
 
 }
