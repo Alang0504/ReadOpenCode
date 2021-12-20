@@ -2,26 +2,44 @@ package com.example.read_open_code.util;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
-
 @Slf4j
+@Component
 public class RestClientUtil {
 
-    private static RestClientUtil restClientUtil;
-
     private static RestTemplate restTemplate;
+
+    private static String token;
+
+    @Autowired
+    public void setRestTemplate(RestTemplate restTemplate) {
+        RestClientUtil.restTemplate = restTemplate;
+    }
+
+    @Value("${open.code.token}")
+    public void setToken(String token) {
+        RestClientUtil.token = token;
+    }
 
     public static JSONObject executeOpenCode(String url, HttpMethod method, JSONObject param) {
 
         //请求头
         HttpHeaders headers = new HttpHeaders();
+        headers.set("token", token);
+        headers.set("cookie", "__ddg1=wpVAreYgA2fIFthw6cmt");
+        headers.set("sec-ch-ua", "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"");
+        headers.set("sec-ch-ua-mobile", "?0");
+        headers.set("sec-fetch-dest", "empty");
+        headers.set("accept-language", "zh-CN,zh;q=0.9");
         headers.setContentType(MediaType.APPLICATION_JSON);
         //请求实体
         HttpEntity<JSONObject> entity = new HttpEntity<>(param, headers);
@@ -53,10 +71,4 @@ public class RestClientUtil {
         }
     }
 
-    //加载类的构造函数之后执行
-    @PostConstruct
-    public void init() {
-        restClientUtil = this;
-        restClientUtil.restTemplate = this.restTemplate;
-    }
 }

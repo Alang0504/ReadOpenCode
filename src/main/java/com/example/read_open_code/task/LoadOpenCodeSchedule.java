@@ -9,6 +9,7 @@ import com.example.read_open_code.util.RestClientUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,9 @@ public class LoadOpenCodeSchedule {
 
     private final OpenCodeRecordMapper openCodeRecordMapper;
 
+    @Value("${open.code.param}")
+    private  String param;
+
     //@Autowired,spring4.3之后构造器注入注解可以省略,隐式注入
     public LoadOpenCodeSchedule(OpenCodeRecordMapper openCodeRecordMapper) {
         this.openCodeRecordMapper = openCodeRecordMapper;
@@ -32,9 +36,10 @@ public class LoadOpenCodeSchedule {
     @Scheduled(fixedDelay = 60 * 1000)
     public void loadOpenCodeTask() {
         try {
-            /*String url = "";
-            JSONObject param = new JSONObject();
-            JSONObject result = RestClientUtil.executeOpenCode(url, HttpMethod.GET, param);
+
+            /*JSONObject paramJson = new JSONObject();
+            paramJson.put("data", param);
+            JSONObject result = RestClientUtil.executeOpenCode("https://wdweb.tshdjx.com/api/lottery/getLotteryInfo", HttpMethod.POST, paramJson);
             String openCode = result.getString("opencodestr");
             String lastCode = StrUtil.isNotBlank(openCode) ? openCode.substring(openCode.length() - 2) : openCode;
             OpenCodeRecord openCodeRecord = BuildModelUtil.buildOpenCodeRecord(openCode, lastCode);
