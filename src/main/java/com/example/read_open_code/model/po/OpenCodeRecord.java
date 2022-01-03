@@ -1,4 +1,4 @@
-package com.example.read_open_code.model;
+package com.example.read_open_code.model.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;

@@ -1,6 +1,6 @@
 package com.example.read_open_code.util;
 
-import com.example.read_open_code.model.OpenCodeRecord;
+import com.example.read_open_code.model.po.OpenCodeRecord;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package com.example.read_open_code.service;
 
-import com.example.read_open_code.model.OpenCodeRecord;
+import com.example.read_open_code.model.po.OpenCodeRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

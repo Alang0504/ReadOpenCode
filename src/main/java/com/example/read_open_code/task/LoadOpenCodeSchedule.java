@@ -1,22 +1,11 @@
 package com.example.read_open_code.task;
 
-import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.example.read_open_code.dao.OpenCodeRecordMapper;
-import com.example.read_open_code.model.OpenCodeRecord;
-import com.example.read_open_code.util.BuildModelUtil;
-import com.example.read_open_code.util.RestClientUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Component
 public class LoadOpenCodeSchedule {
